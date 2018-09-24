@@ -1,0 +1,7 @@
+<mat-form-field>
+  <mat-select placeholder="Tipo apuesta">
+    <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
+      {{tipo.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
