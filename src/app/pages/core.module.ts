@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatRadioModule, MatButtonModule, MatNativeDateModule, MatTableModule } from '@angular/material';
+import { MatRadioModule, MatButtonModule, MatNativeDateModule, MatTableModule, MatCardModule, MatInputModule, MatCheckboxModule } from '@angular/material';
 import { MatMenuModule, MatIconModule } from '@angular/material';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
@@ -11,7 +11,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 @NgModule({
   imports: [
     CommonModule,
+    MatCheckboxModule,
     MatRadioModule,
+    MatCardModule,
     MatMenuModule,
     MatSidenavModule,
     MatListModule,
@@ -21,10 +23,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatDatepickerModule,
     MatNativeDateModule,
     MatTableModule,
+    MatInputModule
   ],
   exports: [
+    MatCheckboxModule,
     MatRadioModule,
     MatIconModule,
+    MatCardModule,
     MatSidenavModule,
     MatListModule,
     MatToolbarModule,
@@ -32,7 +37,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatTableModule
+    MatTableModule,
+    MatInputModule
   ],
   declarations: []
 })

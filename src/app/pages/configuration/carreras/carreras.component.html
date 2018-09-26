@@ -1,0 +1,23 @@
+<mat-card>
+  <app-datepicker></app-datepicker>
+  <button mat-button (click)="algo()">See pickdate value</button>
+</mat-card>
+<mat-card>
+    <mat-form-field>
+      <mat-select placeholder="N° de caballos" [(ngModel)]="numHourses" (selectionChange)="onChange()">
+        <mat-option *ngFor="let hourse of hourses" >
+          {{hourse}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+</mat-card>
+<mat-card *ngIf="numHourses!=0">
+
+      <mat-list>
+          <mat-list-item *ngFor="let race of races">      
+            <mat-checkbox *ngFor="let board of boards" class="checks_hourses"></mat-checkbox>
+          </mat-list-item>
+      </mat-list>
+
+
+</mat-card>

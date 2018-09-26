@@ -7,15 +7,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // ShowCase Modules
 import { InputModule } from '../input/input.module';
-import { CheckboxModule } from '../checkbox/checkbox.module';
 import { CoreModule } from '../../core.module';
 import { RadioModule } from '../radio/radio.module';
-import { DatepickerModule } from '../datepicker/datepicker.module';
+
 
 // Components
 import { SidenavComponent } from './sidenav.component';
 import { ApuestasModule } from '../apuestas/apuestas.module';
 import { MonedaModule } from '../moneda/moneda.module';
+import { DatepickerModule } from '../../components/datepicker/datepicker.module';
+import { CarrerasModule } from '../../configuration/carreras/carreras.module';
 
 
 @NgModule({
@@ -26,11 +27,11 @@ import { MonedaModule } from '../moneda/moneda.module';
     ReactiveFormsModule,
     CoreModule,
     InputModule,
-    CheckboxModule,
     RadioModule,
     DatepickerModule,
     ApuestasModule,
-    MonedaModule
+    MonedaModule,
+    CarrerasModule
   ],
   exports: [SidenavComponent],
   declarations: [SidenavComponent],
