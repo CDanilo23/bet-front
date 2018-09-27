@@ -3,21 +3,35 @@
   <button mat-button (click)="algo()">See pickdate value</button>
 </mat-card>
 <mat-card>
-    <mat-form-field>
-      <mat-select placeholder="N° de caballos" [(ngModel)]="numHourses" (selectionChange)="onChange()">
-        <mat-option *ngFor="let hourse of hourses" >
-          {{hourse}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="N° de carreras">
+      <mat-option *ngFor="let race of races" [value]="race.value" (onSelectionChange)="onChangeRaces($event)">
+        {{race.value}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="N° de caballos">
+      <mat-option *ngFor="let hourse of hourses" [value]="hourse.value" (onSelectionChange)="onChangeHourses($event)">
+        {{hourse.value}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
 </mat-card>
-<mat-card *ngIf="numHourses!=0">
 
-      <mat-list>
-          <mat-list-item *ngFor="let race of races">      
-            <mat-checkbox *ngFor="let board of boards" class="checks_hourses"></mat-checkbox>
-          </mat-list-item>
-      </mat-list>
+<mat-card *ngIf="numHourses >0 && numRaces >0">
 
+  <mat-list id="parrilla">
+    <mat-list-item *ngFor="let race of checksY">
+      <mat-checkbox *ngFor="let board of checksX" class="checks_hourses"></mat-checkbox>
+    </mat-list-item>
+  </mat-list>
 
+</mat-card>
+
+<mat-card>
+  <button mat-button (click)="saveBoard()">Guardar Parrilla</button>
 </mat-card>

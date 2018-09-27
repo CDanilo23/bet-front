@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, ContentChildren, QueryList, ViewChildren } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import * as _moment from 'moment';
 import { Board } from './model/board';
-import { MatCheckbox } from '@angular/material';
+import * as Collections from 'typescript-collections';
 
 @Component({
   selector: 'app-carreras',
@@ -11,15 +11,68 @@ import { MatCheckbox } from '@angular/material';
 export class CarrerasComponent implements OnInit {
 
   picker = new FormControl(_moment());
-  hourses: number[];
+  races: any[];
+  hourses: any[];
   numHourses: number;
-  boards: Board[];
-  races: number[];
+  numRaces: number;
+  checksX: any[];
+  checksY: any[];
+
+  @ViewChildren('parrilla') parrilla: QueryList<any>;
+
 
   constructor() { }
 
+  onChangeHourses(event) {
+    console.log('Event', event.source.value);
+    this.numHourses = event.source.value;
+    this.checksX = new Array<number>(this.numHourses);
+    console.log(this.checksX);
+  }
+  onChangeRaces(event) {
+    console.log('Event', event.source.value);
+    this.numRaces = event.source.value;
+    this.checksY = new Array<number>(this.numRaces);
+    console.log(this.checksY);
+  }
+
+  saveBoard() {
+    const el = document.getElementById('parrilla');
+    console.log(el);
+  }
+
   ngOnInit() {
-    this.hourses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+    this.races =  [
+    {value: 1 },
+    {value: 2 },
+    {value: 3 },
+    {value: 4 },
+    {value: 5 },
+    {value: 6 },
+    {value: 7 },
+    {value: 8 },
+    {value: 9 },
+    {value: 10 },
+  ];
+
+  this.hourses =  [
+    {value: 1 },
+    {value: 2 },
+    {value: 3 },
+    {value: 4 },
+    {value: 5 },
+    {value: 6 },
+    {value: 7 },
+    {value: 8 },
+    {value: 9 },
+    {value: 10 },
+    {value: 11 },
+    {value: 12 },
+    {value: 13 },
+    {value: 14 },
+    {value: 15 },
+    {value: 16 }
+  ];
 
    /* this.races = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -90,9 +143,7 @@ export class CarrerasComponent implements OnInit {
     */
   }
 
-  onChange() {
-    console.log(this.numHourses);
-  }
+
 
   algo(): void {
     console.log(this.picker);
