@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, ContentChildren, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, ContentChildren, QueryList, ViewChildren, ContentChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import * as _moment from 'moment';
 import { Board } from './model/board';
@@ -18,26 +18,22 @@ export class CarrerasComponent implements OnInit {
   checksX: any[];
   checksY: any[];
 
-  @ViewChildren('parrilla') parrilla: QueryList<any>;
+  @ViewChild('parrilla') parrilla: ElementRef;
 
 
   constructor() { }
 
   onChangeHourses(event) {
-    console.log('Event', event.source.value);
     this.numHourses = event.source.value;
     this.checksX = new Array<number>(this.numHourses);
-    console.log(this.checksX);
   }
   onChangeRaces(event) {
-    console.log('Event', event.source.value);
     this.numRaces = event.source.value;
     this.checksY = new Array<number>(this.numRaces);
-    console.log(this.checksY);
   }
 
   saveBoard() {
-    const el = document.getElementById('parrilla');
+    const el = document.getElementsByName('casillas');
     console.log(el);
   }
 
