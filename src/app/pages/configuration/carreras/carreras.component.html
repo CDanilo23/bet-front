@@ -24,11 +24,16 @@
 
 <mat-card *ngIf="numHourses >0 && numRaces >0">
 
-  <mat-list id="parrilla">
-    <mat-list-item *ngFor="let race of checksY">
-      <mat-checkbox *ngFor="let board of checksX" class="checks_hourses"></mat-checkbox>
-    </mat-list-item>
-  </mat-list>
+<!-- <mat-checkbox *ngFor="let board of checksX" class="checks_hourses" #checks></mat-checkbox>-->
+  
+
+  <div *ngFor="let option of checksY">
+    <label>
+      <input *ngFor="let option of checksX" type="checkbox" name="checksX" value="{{option}}" 
+      [checked]="checksX.indexOf(option) >= 0"/>
+    </label>
+  </div>
+ 
 
 </mat-card>
 

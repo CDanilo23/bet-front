@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import * as _moment from 'moment';
 import { Board } from './model/board';
 import * as Collections from 'typescript-collections';
+import { MatCheckbox } from '@angular/material';
 
 @Component({
   selector: 'app-carreras',
@@ -18,27 +19,37 @@ export class CarrerasComponent implements OnInit {
   checksX: any[];
   checksY: any[];
 
-  @ViewChildren('parrilla') parrilla: QueryList<any>;
+  flag = false;
+
+  @ViewChild('checks')checks: MatCheckbox[];
 
 
   constructor() { }
 
   onChangeHourses(event) {
-    console.log('Event', event.source.value);
     this.numHourses = event.source.value;
     this.checksX = new Array<number>(this.numHourses);
-    console.log(this.checksX);
   }
   onChangeRaces(event) {
-    console.log('Event', event.source.value);
     this.numRaces = event.source.value;
     this.checksY = new Array<number>(this.numRaces);
-    console.log(this.checksY);
   }
 
   saveBoard() {
-    const el = document.getElementById('parrilla');
-    console.log(el);
+
+    const nodesArray = [].slice.call(document.getElementsByName('checksX'));
+
+    let i;
+    let veces = 0;
+
+    console.log(nodesArray);
+    for (i = 0; i < nodesArray.length; i++ ) {
+      if (JSON.stringify(nodesArray[i].checked) === 'true') {
+           console.log('fuck');
+      }
+    }
+
+
   }
 
   ngOnInit() {
