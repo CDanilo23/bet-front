@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, ContentChildren, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, ContentChildren, QueryList, ViewChildren, ContentChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import * as _moment from 'moment';
 import { Board } from './model/board';
@@ -20,9 +20,6 @@ export class CarrerasComponent implements OnInit {
   checksY: any[];
 
   flag = false;
-
-  @ViewChild('checks')checks: MatCheckbox[];
-
 
   constructor() { }
 
