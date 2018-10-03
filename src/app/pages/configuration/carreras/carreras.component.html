@@ -20,17 +20,20 @@
     </mat-select>
   </mat-form-field>
 
+  <button *ngIf="(numHourses && numRaces) > 0" mat-raised-button color="primary" (click)="makeBoard()">Generate Board</button>
+
 </mat-card>
 
-<mat-card *ngIf="numHourses >0 && numRaces >0">
+<mat-card *ngIf="flagCreateBoard">
 
 <!-- <mat-checkbox *ngFor="let board of checksX" class="checks_hourses" #checks></mat-checkbox>-->
   
 
-  <div *ngFor="let option of checksY">
+  <div *ngFor="let option of checksY; let z = index" [attr.data-index]="z">
     <label>
-      <input *ngFor="let option of checksX" type="checkbox" name="checksX" value="{{option}}" 
-      [checked]="checksX.indexOf(option) >= 0"/>
+      <input *ngFor="let option of checksX; let i = index" [attr.data-index]="i" type="checkbox" name="checksX" value="{{option}}" 
+      [checked]="checksX.indexOf(option) >= 0"
+      (change)="updateCheckedOptions(i, z, $event)"/>
     </label>
   </div>
  

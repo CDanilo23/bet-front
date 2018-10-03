@@ -4,7 +4,7 @@ import * as _moment from 'moment';
 import { Board } from './model/board';
 import * as Collections from 'typescript-collections';
 import { MatCheckbox } from '@angular/material';
-
+import { RaceModel } from './model/race.model';
 @Component({
   selector: 'app-carreras',
   templateUrl: './carreras.component.html',
@@ -18,35 +18,60 @@ export class CarrerasComponent implements OnInit {
   numRaces: number;
   checksX: any[];
   checksY: any[];
+  raceModel: RaceModel;
+  optionsMap: any;
+  board: any;
 
-  flag = false;
+  flagCreateBoard = false;
 
   constructor() { }
 
   onChangeHourses(event) {
     this.numHourses = event.source.value;
-    this.checksX = new Array<number>(this.numHourses);
+    this.checksX = new Array(this.numHourses);
   }
   onChangeRaces(event) {
     this.numRaces = event.source.value;
-    this.checksY = new Array<number>(this.numRaces);
+    this.checksY = new Array(this.numRaces);
+  }
+
+  makeBoard() {
+
+    let stringBuild = '{"optionsMap":[[ ';
+    for (let i = 0; i < this.numRaces; i++) {
+
+      for (let j = 0; j < this.numHourses; j++) {
+         if (j === (this.numHourses - 1)) {
+          stringBuild += 'false';
+        } else if (j < this.numHourses ) {
+          stringBuild += 'false,';
+        }
+      }
+
+      if (i < (this.numRaces - 1)) {
+        stringBuild += ' ] , [';
+      } else {
+        stringBuild += ' ] ';
+      }
+    }
+    stringBuild += ' ]}';
+
+    this.optionsMap = JSON.parse(stringBuild)["optionsMap"];
+    console.log(this.optionsMap);
+    this.flagCreateBoard = true;
   }
 
   saveBoard() {
-
-    const nodesArray = [].slice.call(document.getElementsByName('checksX'));
-
-    let i;
-    let veces = 0;
-
-    console.log(nodesArray);
-    for (i = 0; i < nodesArray.length; i++ ) {
-      if (JSON.stringify(nodesArray[i].checked) === 'true') {
-           console.log('fuck');
-      }
-    }
+    
+  }
 
 
+
+  updateCheckedOptions(optionx, optiony, event) {
+    console.log('X', optionx);
+    console.log('Y', optiony);
+    this.optionsMap[optiony][optionx] = event.target.checked;
+    console.log(this.optionsMap);
   }
 
   ngOnInit() {
