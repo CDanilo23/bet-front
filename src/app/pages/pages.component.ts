@@ -2,11 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 
 @Component({
-  selector: 'showcase-sidenav',
-  templateUrl: './sidenav.component.html',
-  styleUrls: []
+  selector: 'app-pages',
+  templateUrl: './pages.component.html',
 })
-export class SidenavComponent implements OnInit {
+export class PagesComponent implements OnInit {
 
   @ViewChild('sidenav') sidenav: MatSidenav;
   showAcumulado = false;

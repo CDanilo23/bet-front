@@ -1,0 +1,30 @@
+
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+      <span>Angular Material</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container class="showcase-sidenav-container">
+
+  <mat-sidenav #sidenav class="showcase-sidenav" disableClose>
+      <p><button mat-button (click)="sectionSelected('acumulado')">Acumulado Diario</button> </p>
+      <p><button mat-button (click)="sectionSelected('ganadores')">Ganadores</button> </p>
+      <p><button mat-button (click)="sectionSelected('apuestas')">Apuestas</button> </p>
+      <p><button mat-button (click)="sectionSelected('hipodromos')">Hipodromos</button> </p>
+      <p><button mat-button (click)="sectionSelected('carreras')">Carreras Diarias</button> </p>
+      <p><button mat-button (click)="sectionSelected('ventas')">Cerrar ventas</button> </p>
+      <p><button mat-button (click)="sectionSelected('moneda')">Monedas</button> </p>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <p><button mat-button (click)="sidenav.open()">Comenzar</button></p>
+  
+    <apuestas *ngIf="showApuestas"></apuestas>
+    <app-moneda *ngIf="showMoneda"></app-moneda>  
+    <app-carreras *ngIf="showCarreras"></app-carreras>
+    <app-hipodromos *ngIf="showHipodromos"></app-hipodromos>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

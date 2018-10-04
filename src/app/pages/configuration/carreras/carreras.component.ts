@@ -1,10 +1,7 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, ContentChildren, QueryList, ViewChildren, ContentChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import * as _moment from 'moment';
-import { Board } from './model/board';
-import * as Collections from 'typescript-collections';
-import { MatCheckbox } from '@angular/material';
-import { RaceModel } from './model/race.model';
+import { CarreraService } from '../../../service/service.index';
 @Component({
   selector: 'app-carreras',
   templateUrl: './carreras.component.html',
@@ -18,13 +15,12 @@ export class CarrerasComponent implements OnInit {
   numRaces: number;
   checksX: any[];
   checksY: any[];
-  raceModel: RaceModel;
   optionsMap: any;
   board: any;
 
   flagCreateBoard = false;
 
-  constructor() { }
+  constructor(private carreraservice: CarreraService) { }
 
   onChangeHourses(event) {
     this.numHourses = event.source.value;
@@ -55,21 +51,43 @@ export class CarrerasComponent implements OnInit {
       }
     }
     stringBuild += ' ]}';
-
+  console.log(stringBuild);
     this.optionsMap = JSON.parse(stringBuild)["optionsMap"];
     console.log(this.optionsMap);
     this.flagCreateBoard = true;
   }
 
   saveBoard() {
-    
+    let json = '[ ';
+    for (let i = 0; i < this.optionsMap.length; i++) {
+      json += ' { ';
+
+      for (let j = 0; j < this.optionsMap[i].length; j++) {
+
+        if (j === (this.optionsMap[i].length - 1)) {
+          json += '"hourse' + j + '":' + this.optionsMap[i][j];
+
+        } else {
+          json += '"hourse' + j + '":' + this.optionsMap[i][j] + ' , ';
+        }
+
+      }
+
+      if (i === (this.optionsMap.length - 1)) {
+        json += ' } ';
+      } else {
+        json += ' }, ';
+      }
+
+    }
+    json += ' ] ';
+    console.log(json);
+    this.carreraservice.createBoard('[{"hourses": [{"hourse0": false,"hourse1": false,"hourse2": false,"hourse3": false}]}, {"hourses": [{"hourse0": false,"hourse1": false,"hourse2": false,"hourse3": false}]}]');
   }
 
 
 
   updateCheckedOptions(optionx, optiony, event) {
-    console.log('X', optionx);
-    console.log('Y', optiony);
     this.optionsMap[optiony][optionx] = event.target.checked;
     console.log(this.optionsMap);
   }

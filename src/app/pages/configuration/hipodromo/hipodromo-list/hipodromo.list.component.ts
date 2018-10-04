@@ -8,8 +8,7 @@ import { HipodromoService } from '../../../../service/hipodromo.service';
 
 
 @Component({
-  // tslint:disable-next-line:component-selector
-  selector: 'hipodromos',
+  selector: 'app-hipodromos',
   templateUrl: './hipodromo.list.component.html'
 })
 export class HipodromoListComponent implements OnInit {
