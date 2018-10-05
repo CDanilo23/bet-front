@@ -14,10 +14,10 @@ export class CarreraService {
         console.log('entro', optionsMap);
         this.httpclient.post('http://192.168.5.4:8010/board', optionsMap, {headers}).subscribe(
             data => {
-                console.log('Post succesful', data);
+                console.log('Post request succesful', data);
             },
             error => {
-                console.log('Error sending info', error);
+                console.log('Error sending post request', error);
             }
         );
     }

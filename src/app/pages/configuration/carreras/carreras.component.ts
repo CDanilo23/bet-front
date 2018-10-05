@@ -60,7 +60,7 @@ export class CarrerasComponent implements OnInit {
   saveBoard() {
     let json = '[ ';
     for (let i = 0; i < this.optionsMap.length; i++) {
-      json += ' { ';
+      json += ' {"hourses": [{';
 
       for (let j = 0; j < this.optionsMap[i].length; j++) {
 
@@ -74,15 +74,15 @@ export class CarrerasComponent implements OnInit {
       }
 
       if (i === (this.optionsMap.length - 1)) {
-        json += ' } ';
+        json += ' }]} ';
       } else {
-        json += ' }, ';
+        json += ' }]} , ';
       }
 
     }
     json += ' ] ';
     console.log(json);
-    this.carreraservice.createBoard('[{"hourses": [{"hourse0": false,"hourse1": false,"hourse2": false,"hourse3": false}]}, {"hourses": [{"hourse0": false,"hourse1": false,"hourse2": false,"hourse3": false}]}]');
+    this.carreraservice.createBoard(json);
   }
 
 
