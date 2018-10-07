@@ -51,8 +51,7 @@ export class CarrerasComponent implements OnInit {
       }
     }
     stringBuild += ' ]}';
-  console.log(stringBuild);
-    this.optionsMap = JSON.parse(stringBuild)["optionsMap"];
+    this.optionsMap = JSON.parse(stringBuild)['optionsMap'];
     console.log(this.optionsMap);
     this.flagCreateBoard = true;
   }
@@ -65,10 +64,10 @@ export class CarrerasComponent implements OnInit {
       for (let j = 0; j < this.optionsMap[i].length; j++) {
 
         if (j === (this.optionsMap[i].length - 1)) {
-          json += '"hourse' + j + '":' + this.optionsMap[i][j];
+          json += '"hourse' + (j + 1) + '":' + this.optionsMap[i][j];
 
         } else {
-          json += '"hourse' + j + '":' + this.optionsMap[i][j] + ' , ';
+          json += '"hourse' + (j + 1) + '":' + this.optionsMap[i][j] + ' , ';
         }
 
       }
