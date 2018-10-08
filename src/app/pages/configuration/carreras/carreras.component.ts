@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import * as _moment from 'moment';
-import { CarreraService } from '../../../service/service.index';
+import { CarreraService, HipodromoService } from '../../../service/service.index';
+import { Hipodromo } from './model/hipodromo';
 @Component({
   selector: 'app-carreras',
   templateUrl: './carreras.component.html',
@@ -17,10 +18,15 @@ export class CarrerasComponent implements OnInit {
   checksY: any[];
   optionsMap: any;
   board: any;
+  hipodromos: Hipodromo[] = [];
 
   flagCreateBoard = false;
 
-  constructor(private carreraservice: CarreraService) { }
+  constructor(private carreraservice: CarreraService, private hipodromoService: HipodromoService) { }
+
+  onChangeHipodromo() {
+    console.log(this.hipodromos);
+  }
 
   onChangeHourses(event) {
     this.numHourses = event.source.value;
@@ -37,9 +43,9 @@ export class CarrerasComponent implements OnInit {
     for (let i = 0; i < this.numRaces; i++) {
 
       for (let j = 0; j < this.numHourses; j++) {
-         if (j === (this.numHourses - 1)) {
+        if (j === (this.numHourses - 1)) {
           stringBuild += 'false';
-        } else if (j < this.numHourses ) {
+        } else if (j < this.numHourses) {
           stringBuild += 'false,';
         }
       }
@@ -92,105 +98,112 @@ export class CarrerasComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.races =  [
-    {value: 1 },
-    {value: 2 },
-    {value: 3 },
-    {value: 4 },
-    {value: 5 },
-    {value: 6 },
-    {value: 7 },
-    {value: 8 },
-    {value: 9 },
-    {value: 10 },
-  ];
-
-  this.hourses =  [
-    {value: 1 },
-    {value: 2 },
-    {value: 3 },
-    {value: 4 },
-    {value: 5 },
-    {value: 6 },
-    {value: 7 },
-    {value: 8 },
-    {value: 9 },
-    {value: 10 },
-    {value: 11 },
-    {value: 12 },
-    {value: 13 },
-    {value: 14 },
-    {value: 15 },
-    {value: 16 }
-  ];
-
-   /* this.races = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-    const race1 = [
-      {
-        id: 1,
-        ho1: 'ho1',
-        ho2: 'ho2',
+    this.hipodromoService.getAllHipodromos().subscribe((data: Hipodromo[]) => {
+      this.hipodromos = data;
+    },
+      error => {
+        console.log('Error fetching data', error);
       }
+    );
+    this.races = [
+      { value: 1 },
+      { value: 2 },
+      { value: 3 },
+      { value: 4 },
+      { value: 5 },
+      { value: 6 },
+      { value: 7 },
+      { value: 8 },
+      { value: 9 },
+      { value: 10 },
     ];
-    const race2 = [
-      {
-        id: 2,
-        ho1: 'ho1',
-        ho2: 'ho2',
-      }
+
+    this.hourses = [
+      { value: 1 },
+      { value: 2 },
+      { value: 3 },
+      { value: 4 },
+      { value: 5 },
+      { value: 6 },
+      { value: 7 },
+      { value: 8 },
+      { value: 9 },
+      { value: 10 },
+      { value: 11 },
+      { value: 12 },
+      { value: 13 },
+      { value: 14 },
+      { value: 15 },
+      { value: 16 }
     ];
-    this.boards = [
-      {
-        id: 1, races: race1
-      },
-      {
-        id: 2, races: race2
-      },
-      {
-        id: 3, races: race2
-      },
-      {
-        id: 4, races: race2
-      },
-      {
-        id: 5, races: race2
-      },
-      {
-        id: 6, races: race2
-      },
-      {
-        id: 7, races: race2
-      },
-      {
-        id: 8, races: race2
-      },
-      {
-        id: 9, races: race2
-      },
-      {
-        id: 10, races: race2
-      },
-      {
-        id: 11, races: race2
-      },
-      {
-        id: 12, races: race2
-      },
-      {
-        id: 13, races: race2
-      },
-      {
-        id: 14, races: race2
-      },
-      {
-        id: 15, races: race2
-      },
-      {
-        id: 16, races: race2
-      }
-    ];
-    */
+
+    /* this.races = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+ 
+     const race1 = [
+       {
+         id: 1,
+         ho1: 'ho1',
+         ho2: 'ho2',
+       }
+     ];
+     const race2 = [
+       {
+         id: 2,
+         ho1: 'ho1',
+         ho2: 'ho2',
+       }
+     ];
+     this.boards = [
+       {
+         id: 1, races: race1
+       },
+       {
+         id: 2, races: race2
+       },
+       {
+         id: 3, races: race2
+       },
+       {
+         id: 4, races: race2
+       },
+       {
+         id: 5, races: race2
+       },
+       {
+         id: 6, races: race2
+       },
+       {
+         id: 7, races: race2
+       },
+       {
+         id: 8, races: race2
+       },
+       {
+         id: 9, races: race2
+       },
+       {
+         id: 10, races: race2
+       },
+       {
+         id: 11, races: race2
+       },
+       {
+         id: 12, races: race2
+       },
+       {
+         id: 13, races: race2
+       },
+       {
+         id: 14, races: race2
+       },
+       {
+         id: 15, races: race2
+       },
+       {
+         id: 16, races: race2
+       }
+     ];
+     */
   }
 
 

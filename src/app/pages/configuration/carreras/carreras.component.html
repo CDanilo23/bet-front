@@ -2,6 +2,18 @@
   <app-datepicker></app-datepicker>
   <button mat-button (click)="algo()">See pickdate value</button>
 </mat-card>
+
+<mat-card>
+  <mat-form-field>
+    <mat-select placeholder="Hipodromo">
+      <mat-option *ngFor="let hipodromo of hipodromos" [value]="hipodromo.idhipodromo" 
+                  (onSelectionChange)="onChangeHipodromo($event)">
+        {{hipodromo.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-card>
+
 <mat-card>
 
   <mat-form-field>

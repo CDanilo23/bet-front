@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http , Response} from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable, of } from 'rxjs';
 import 'rxjs/add/operator/map';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HeadersUtil } from './headers';
+import { Hipodromo } from '../pages/configuration/hipodromo/hipodromo';
+import { catchError, map, tap } from 'rxjs/operators';
 
 
 @Injectable()
@@ -10,7 +13,8 @@ export class HipodromoService {
 
   constructor(private http: HttpClient) { }
 
-  findAll(): Observable<any> {
-    return this.http.get('http://192.168.5.4:8010/hipodromo');
+  getAllHipodromos() {
+    const headers = HeadersUtil.getHeaders();
+    return this.http.get<Hipodromo[]>('http://localhost:8010/hipodromo', { headers });
   }
 }

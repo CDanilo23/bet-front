@@ -19,9 +19,7 @@ export class HipodromoListComponent implements OnInit {
 
   ngOnInit() {
     console.log('entro');
-    return this.hipodromoservice.findAll().subscribe(p => {
-      this.hipodromos = p 
-    });
+    
   }
 
 }
