@@ -23,7 +23,7 @@ export class PagesComponent implements OnInit {
 
   sectionSelected(selection: string) {
     this.showAcumulado = false;
-    this.showAcumulado = false;
+    this.showGanadores = false;
     this.showApuestas = false;
     this.showHipodromos = false;
     this.showCarreras = false;
@@ -34,7 +34,7 @@ export class PagesComponent implements OnInit {
       console.log(selection);
       this.showAcumulado = true;
     } else if (selection === 'ganadores') {
-      this.showAcumulado = true;
+      this.showGanadores = true;
       console.log(selection);
     } else if (selection === 'apuestas') {
       this.showApuestas = true;
