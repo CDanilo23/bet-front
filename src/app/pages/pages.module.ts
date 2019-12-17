@@ -17,7 +17,7 @@ import { HipodromoListModule } from './configuration/hipodromo/hipodromo-list/hi
 import { HipodromoModule } from './configuration/hipodromo/hipodromo.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { CarreraService } from '../service/service.index';
-
+import { GanadoresModule } from './business/ganadores/ganadores.module';
 
 @NgModule({
   imports: [
@@ -38,9 +38,13 @@ import { CarreraService } from '../service/service.index';
     MonedaModule,
     CarrerasModule,
     HipodromoListModule,
-    HipodromoModule
+    HipodromoModule,
+    GanadoresModule
   ],
   exports: [
+    InputModule,
+    RadioModule,
+    DatepickerModule,
     CommonModule,
     ApuestasModule,
     CoreModule,
@@ -48,9 +52,7 @@ import { CarreraService } from '../service/service.index';
     CarrerasModule,
     HipodromoListModule,
     HipodromoModule,
-    InputModule,
-    RadioModule,
-    DatepickerModule
+    GanadoresModule
   ],
   providers: [
     HipodromoService,

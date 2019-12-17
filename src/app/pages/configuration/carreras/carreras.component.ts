@@ -19,6 +19,7 @@ export class CarrerasComponent implements OnInit {
   optionsMap: any;
   board: any;
   hipodromos: Hipodromo[] = [];
+  idHipodromo: number;
 
   flagCreateBoard = false;
 
@@ -63,7 +64,7 @@ export class CarrerasComponent implements OnInit {
   }
 
   saveBoard() {
-    let json = '[ ';
+    let json = ' [ ';
     for (let i = 0; i < this.optionsMap.length; i++) {
       json += ' {"hourses": [{';
 
@@ -87,6 +88,7 @@ export class CarrerasComponent implements OnInit {
     }
     json += ' ] ';
     console.log(json);
+    console.log('This is the idHipodromo', this.idHipodromo);
     this.carreraservice.createBoard(json);
   }
 
@@ -105,6 +107,7 @@ export class CarrerasComponent implements OnInit {
         console.log('Error fetching data', error);
       }
     );
+
     this.races = [
       { value: 1 },
       { value: 2 },

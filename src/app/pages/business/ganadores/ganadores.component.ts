@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Ganador } from './ganador';
+
+const ELEMENT_DATA: Ganador [] = [
+  {date: '12-12-18', tipo: 'pick3', detalle: 'detail', hipodromo: 'los alamitos',
+carrera: '1', retencion: '0.00', total: '62,000.00', usuario: 'admin' }
+];
 
 @Component({
   selector: 'app-ganadores',
@@ -6,20 +12,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GanadoresComponent implements OnInit {
 
-  winners =  [];
+  winners: Ganador[] = [];
+  winner: Ganador;
+  displayedColumns: string[] = ['date', 'tipo', 'detalle', 'hipodromo',
+'carrera', 'retencion', 'total', 'usuario'];
+
 
   constructor() { }
 
   ngOnInit() {
-    this.winners = [
-      { date: '12-12-18' },
-      { tipo: 'pick3' },
-      { detalle: 'detail' },
-      { hipodromo: 'los alamitos' },
-      { noCarrera: '1' },
-      { retencion: '0.00' },
-      { total: '62,000.00' },
-      { usuario: 'admin' }];
+
+      this.winners = ELEMENT_DATA;
   }
 
 }

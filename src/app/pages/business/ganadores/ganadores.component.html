@@ -1,3 +1,47 @@
-<p>
-  ganadores works!
-</p>
+
+  <table mat-table [dataSource]="winners" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Fecha. </th>
+      <td mat-cell *matCellDef="let winner"> {{winner.date}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="tipo">
+      <th mat-header-cell *matHeaderCellDef> Tipo </th>
+      <td mat-cell *matCellDef="let winner"> {{winner.tipo}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="detalle">
+      <th mat-header-cell *matHeaderCellDef> Detalle </th>
+      <td mat-cell *matCellDef="let winner"> {{winner.detalle}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="hipodromo">
+      <th mat-header-cell *matHeaderCellDef> Hipodromo </th>
+      <td mat-cell *matCellDef="let winner"> {{winner.hipodromo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="carrera">
+        <th mat-header-cell *matHeaderCellDef> Carrera </th>
+        <td mat-cell *matCellDef="let winner"> {{winner.carrera}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="retencion">
+          <th mat-header-cell *matHeaderCellDef> Retencion </th>
+          <td mat-cell *matCellDef="let winner"> {{winner.retencion}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+            <th mat-header-cell *matHeaderCellDef> Total </th>
+            <td mat-cell *matCellDef="let winner"> {{winner.total}} </td>
+          </ng-container> 
+          
+          <ng-container matColumnDef="usuario">
+              <th mat-header-cell *matHeaderCellDef> Usuario </th>
+              <td mat-cell *matCellDef="let winner"> {{winner.usuario}} </td>
+            </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
