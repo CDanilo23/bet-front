@@ -5,8 +5,8 @@
 
 <mat-card>
   <mat-form-field>
-    <mat-select placeholder="Hipodromo">
-      <mat-option *ngFor="let hipodromo of hipodromos" [value]="idHipodromo" 
+    <mat-select placeholder="Hipodromo" [(ngModel)]= "hipodromoSelected" >
+      <mat-option *ngFor="let hipodromo of hipodromos" [value]=hipodromo.idhipodromo 
                   (onSelectionChange)="onChangeHipodromo($event)">
         {{hipodromo.name}}
       </mat-option>

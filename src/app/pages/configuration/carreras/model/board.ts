@@ -1,6 +1,9 @@
-import { Race } from './race';
+import { Carrera } from './carrera';
 
-export interface Board {
+export class Board {
+
+    constructor() {}
     id: number;
-    races: Race[];
+    idHipodromo: number;
+    races: Boolean[][];
 }

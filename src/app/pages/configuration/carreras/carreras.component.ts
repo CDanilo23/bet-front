@@ -3,6 +3,9 @@ import { FormControl } from '@angular/forms';
 import * as _moment from 'moment';
 import { CarreraService, HipodromoService } from '../../../service/service.index';
 import { Hipodromo } from './model/hipodromo';
+import { Carrera } from './model/carrera';
+import { Board } from './model/board';
+
 @Component({
   selector: 'app-carreras',
   templateUrl: './carreras.component.html',
@@ -10,6 +13,8 @@ import { Hipodromo } from './model/hipodromo';
 export class CarrerasComponent implements OnInit {
 
   picker = new FormControl(_moment());
+  carrera: Carrera;
+  carreras: Carrera[] = [];
   races: any[];
   hourses: any[];
   numHourses: number;
@@ -17,15 +22,16 @@ export class CarrerasComponent implements OnInit {
   checksX: any[];
   checksY: any[];
   optionsMap: any;
-  board: any;
+  board: Board;
   hipodromos: Hipodromo[] = [];
-  idHipodromo: number;
+  hipodromoSelected: number;
 
   flagCreateBoard = false;
 
   constructor(private carreraservice: CarreraService, private hipodromoService: HipodromoService) { }
 
-  onChangeHipodromo() {
+  onChangeHipodromo(event) {
+    console.log(this.hipodromoSelected);
     console.log(this.hipodromos);
   }
 
@@ -59,12 +65,14 @@ export class CarrerasComponent implements OnInit {
     }
     stringBuild += ' ]}';
     this.optionsMap = JSON.parse(stringBuild)['optionsMap'];
-    console.log(this.optionsMap);
+    console.log('First map: ' + this.optionsMap);
     this.flagCreateBoard = true;
   }
 
   saveBoard() {
-    let json = ' [ ';
+    // tslint:disable-next-line:no-debugger
+    //debugger;
+    /*let json = ' [ ';
     for (let i = 0; i < this.optionsMap.length; i++) {
       json += ' {"hourses": [{';
 
@@ -87,16 +95,20 @@ export class CarrerasComponent implements OnInit {
 
     }
     json += ' ] ';
-    console.log(json);
-    console.log('This is the idHipodromo', this.idHipodromo);
-    this.carreraservice.createBoard(json);
+    console.log(json);*/
+    this.board = new Board();
+    this.board.races = this.optionsMap;
+    this.board.idHipodromo = this.hipodromoSelected;
+    console.log('This is the idHipodromo', this.hipodromoSelected);
+    console.log('This is the board', this.board);
+    this.carreraservice.createBoard(this.board);
   }
 
 
 
   updateCheckedOptions(optionx, optiony, event) {
     this.optionsMap[optiony][optionx] = event.target.checked;
-    console.log(this.optionsMap);
+    console.log('map updated: ' + this.optionsMap);
   }
 
   ngOnInit() {
@@ -141,7 +153,7 @@ export class CarrerasComponent implements OnInit {
     ];
 
     /* this.races = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
- 
+
      const race1 = [
        {
          id: 1,

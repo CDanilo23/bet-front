@@ -1,8 +1,11 @@
-export interface Race {
+export class Carrera {
+
+    constructor() {
+    }
     id: number;
     ho1: string;
     ho2: string;
-  /*  ho3: string;
+    ho3: string;
     ho4: string;
     ho5: string;
     ho6: string;
@@ -15,5 +18,5 @@ export interface Race {
     ho13: string;
     ho14: string;
     ho15: string;
-    ho16: string;*/
+    ho16: string;
 }
