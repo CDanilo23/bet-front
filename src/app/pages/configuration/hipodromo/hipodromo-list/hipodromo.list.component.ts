@@ -18,8 +18,14 @@ export class HipodromoListComponent implements OnInit {
   constructor(private hipodromoservice: HipodromoService, private router: Router) { }
 
   ngOnInit() {
-    console.log('entro');
+    let hipo = new Hipodromo(1, 'Hipodromo medellin');
+    this.hipodromos[0] = hipo; 
+    return this.hipodromos;
     
+  }
+
+  crearHipodromo(){
+    this.router.navigate(['/app-hipodromo']);
   }
 
 }

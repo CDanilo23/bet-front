@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { APP_ROUTES } from '../app.routes';
+import { AppRoutingModule } from '../app-routing.module';
 import { RadioModule } from './business/radio/radio.module';
 
 import { InputModule } from './business/input/input.module';
@@ -24,7 +24,7 @@ import { GanadoresModule } from './business/ganadores/ganadores.module';
     CommonModule,
     BrowserModule,
     HttpClientModule,
-    APP_ROUTES,
+    AppRoutingModule,
     RadioModule,
     DatepickerModule,
     BrowserAnimationsModule,

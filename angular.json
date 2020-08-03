@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "bet-front"
+  "defaultProject": "bet-front",
+  "cli": {
+    "analytics": "c4a848c1-cad4-42ae-bba5-4027a89ff61f"
+  }
 }
