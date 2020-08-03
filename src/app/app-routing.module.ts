@@ -7,7 +7,7 @@ import { NgModule } from '@angular/core';
 const routes: Routes = [
     { path:  '', redirectTo:  'home', pathMatch:  'full' },
     { path: 'home', component: PagesComponent, },
-    { path: 'hipodromo', component: HipodromoComponent }
+    { path: 'hipodromo', component: HipodromoComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

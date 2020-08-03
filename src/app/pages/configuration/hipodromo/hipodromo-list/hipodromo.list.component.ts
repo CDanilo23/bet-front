@@ -25,7 +25,7 @@ export class HipodromoListComponent implements OnInit {
   }
 
   crearHipodromo(){
-    this.router.navigate(['/app-hipodromo']);
+    //this.router.navigateByUrl('hipodromo');
   }
 
 }
